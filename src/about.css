@@ -1,0 +1,87 @@
+.container {
+  background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url('C:\Users\Akshat Trivedi\Desktop\LG\project_new\project\public\bgLG.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: aliceblue;
+  height: 60vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+  .add-campaign-button {
+    background-color: #e44d26;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    height: 5vh;
+    margin-top: 10px; 
+    margin-left: 45px;
+  }
+  
+  .add-campaign-button:hover {
+    background-color: #c6341e;
+  }
+
+  
+  .input-container {
+    text-align: center;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 350px;
+  }
+  
+  .input-field {
+    padding: 8px;
+    font-size: 16px;
+    width: 200px;
+    margin-top: 10px;
+  }
+
+  .list-container {
+    position: absolute;
+    top: 80px;
+    right: 100px;
+    padding: 20px;
+    border-radius: 8px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  }
+
+  .list-container label {
+    font-size: 18px; 
+    margin-bottom: 20px;  
+  }
+  
+  .list-container ul {
+    list-style-type: none; 
+    padding: 0;
+  }
+  
+  .list-container ul li {
+    margin-bottom: 10px; 
+    font-size: 16px; 
+    background-color: #f8f9fa;
+    border-radius: 2px;
+    color: black;
+    padding: 4px;
+  }
+
+  .list-containerfont{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+  }
+
+
+  
+  
+  
+  

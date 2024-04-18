@@ -1,0 +1,57 @@
+a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+
+body {
+    background-color: black; 
+  }
+  
+
+  .navbar {
+    background-color: black; 
+  }
+  
+  .navbar-brand,
+  .navbar-nav .nav-link {
+    color: #fff; 
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #fff; 
+  }
+  
+  .nav-link.active,
+  .nav-item.dropdown:hover .nav-link {
+    color: #fff; 
+  }
+  
+  .dropdown-menu {
+    background-color: black; 
+  }
+  
+  .demo-campaign {
+    color: #fff; 
+  }
+  
+  .dropdown-menu {
+    background-color: white; 
+    color: black; 
+  }
+  
+  
+  .dropdown-item {
+    color: black; 
+  }
+  
+
+  .dropdown-menu.show {
+    display: block;
+  }
+
+
+.navbar {
+  height: 80px; 
+}
+

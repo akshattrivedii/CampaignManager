@@ -1,0 +1,17 @@
+body {
+    background-color: black; 
+    color: aliceblue;
+  }
+  
+  .container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .content {
+    color: aliceblue;
+    text-align: center;
+  }
+  
+  
