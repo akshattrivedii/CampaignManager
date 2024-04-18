@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import '../about.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "../about.css";
+import { Link } from "react-router-dom";
 
 export default function About({ onAddCampaign, campaignList }) {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isHovered, setIsHovered] = useState(false);
 
   const handleInputChange = (event) => {
@@ -11,13 +11,25 @@ export default function About({ onAddCampaign, campaignList }) {
   };
 
   const handleSubmit = () => {
-    if (inputValue.trim() !== '') {
+    if (inputValue.trim() !== "") {
       if (!campaignList.includes(inputValue)) {
-        onAddCampaign(inputValue);  
+        onAddCampaign(inputValue);
+        fetch("http://localhost:5000/api/campaigns", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            campaignName: inputValue,
+          }),
+        })
+          .then((res) => console.log(res))
+          .catch((res) => console.log(res));
       } else {
         console.log("Campaign already exists!");
       }
-      setInputValue('');
+      setInputValue("");
     }
   };
 
@@ -30,15 +42,15 @@ export default function About({ onAddCampaign, campaignList }) {
   };
 
   return (
-    <table className='container'>
+    <table className="container">
       <tbody>
         <tr>
-          <td className='left-container'>
-            <div className='input-container'>
-              <label className='label'>Campaign name:</label>
+          <td className="left-container">
+            <div className="input-container">
+              <label className="label">Campaign name:</label>
               <input
-                type='text'
-                className='input-field'
+                type="text"
+                className="input-field"
                 value={inputValue}
                 onChange={handleInputChange}
               />
@@ -47,13 +59,13 @@ export default function About({ onAddCampaign, campaignList }) {
               Create a Campaign
             </button>
           </td>
-          <td 
-            className="list-container" 
-            onMouseEnter={handleMouseEnter} 
+          <td
+            className="list-container"
+            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
             <label className="list-containerfont">Campaigns: </label>
-            <ul style={{ display: isHovered ? 'block' : 'none' }}>
+            <ul style={{ display: isHovered ? "block" : "none" }}>
               {campaignList.map((campaign, index) => (
                 <li key={index}>{campaign}</li>
               ))}

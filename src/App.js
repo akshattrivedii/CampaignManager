@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<About onAddCampaign={handleAddCampaign} campaignList={campaignList} />} />
           <Route exact path="/democamp" element={<Campaign />} />
-          <Route path="/campaign/:index" element={<Feature1 />} />
+          <Route path="/:index" element={<Feature1 />} />
         </Routes>
       </div>
     </Router>

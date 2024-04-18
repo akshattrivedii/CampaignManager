@@ -41,7 +41,7 @@ export default function Navbar({ campaignList }) {
               <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 {campaignList.map((campaign, index) => (
                   <li key={index}>
-                    <Link className="dropdown-item" to={`/campaign/${index}`}>
+                    <Link className="dropdown-item" to={`/${campaign}`}>
                       {campaign}
                     </Link>
                   </li>
