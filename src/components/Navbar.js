@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../nav.css';
 
-export default function Navbar({ campaignList }) {
+export default function Navbar() {
+  const [campaignList, setCampaignList] = useState([]);
+
+  useEffect(() => {
+   fetch("http://localhost:5000/api/campaignList", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+   })
+   .then((res)=> res.json())
+   .then((data) => setCampaignList(data))
+   .catch((error) => {
+    console.log(error);
+   })
+  }, []);
+
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark">
       <div className="container-fluid">
@@ -41,8 +58,8 @@ export default function Navbar({ campaignList }) {
               <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 {campaignList.map((campaign, index) => (
                   <li key={index}>
-                    <Link className="dropdown-item" to={`/${campaign}`}>
-                      {campaign}
+                    <Link className="dropdown-item" to={`/${campaign.name}`}>
+                      {campaign.name}
                     </Link>
                   </li>
                 ))}

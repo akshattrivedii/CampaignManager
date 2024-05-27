@@ -13,8 +13,13 @@ function Login(){
         axios.post('http://localhost:3001/login', {email , password})
         .then(result => 
           {console.log(result)
-            if(result.data === "success"){
-                navigate('/')
+            if(result.data.resp === "success"){
+              if(result.data.role === "bigdata"){
+                navigate("/createCampaign")
+              }
+              else if(result.data.role ==="campaignmanager"){
+                navigate("/marketing")
+              }
             } else {
               console.log("login failed")
             }

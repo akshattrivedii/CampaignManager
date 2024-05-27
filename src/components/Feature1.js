@@ -1,37 +1,38 @@
-import React, { useState } from 'react';
-import '../feature.css';
-import '../about.css';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import "../feature.css";
+import "../about.css";
+import { useLocation } from "react-router-dom";
 
 export default function Feature1() {
   // const [image, setImage] = useState(null);
 
-  // react-dom function to get path name from url 
+  // react-dom function to get path name from url
   const location = useLocation();
 
-  const {pathname} = location ; 
+  const { pathname } = location;
 
-  const[form , setForm] = useState({
-    subject: "" , 
-    preheader: "" , 
-    content: "", 
+  const [form, setForm] = useState({
+    subject: "",
+    preheader: "",
+    content: "",
     cta: "",
-  })
+    type: "",
+  });
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setForm(prevValue => {
+    setForm((prevValue) => {
       return {
         ...prevValue,
-        [name]: value
-      }
+        [name]: value,
+      };
     });
   }
 
   const handleSubmit = () => {
-    console.log(pathname)
-    console.log(form)
-    fetch(`http://localhost:5000/api/campaigns${pathname}s`, {
+    console.log(pathname);
+    console.log(form);
+    fetch(`http://localhost:5000/api/campaigns${pathname}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -41,13 +42,14 @@ export default function Feature1() {
     })
       .then((res) => console.log(res))
       .catch((res) => console.log(res));
-      setForm({
-        subject: "" , 
-        preheader: "" , 
-        content: "", 
-        cta: "",
-      });
-  }
+    setForm({
+      subject: "",
+      preheader: "",
+      content: "",
+      cta: "",
+      type: "",
+    });
+  };
 
   // const handleImageChange = (event) => {
   //   const file = event.target.files[0];
@@ -55,14 +57,25 @@ export default function Feature1() {
   //   setImage(imageUrl);
   // };
 
-
   return (
-    <div className='feature-container'>
-      <label className='label'>Subject :</label>
-      <input type='text' name="subject" value={form.subject} className='input-field' onChange={handleChange}/>
+    <div className="feature-container">
+      <label className="label">Subject :</label>
+      <input
+        type="text"
+        name="subject"
+        value={form.subject}
+        className="input-field"
+        onChange={handleChange}
+      />
       <br />
-      <label className='label'>Preheader :</label>
-      <input type='text' name="preheader"  value={form.preheader} className='input-field' onChange={handleChange}/>
+      <label className="label">Preheader :</label>
+      <input
+        type="text"
+        name="preheader"
+        value={form.preheader}
+        className="input-field"
+        onChange={handleChange}
+      />
       <br />
       {/* <label className='label'>Images :</label>
       <input
@@ -73,17 +86,38 @@ export default function Feature1() {
       <br />
 {image && <img src={image} alt='Uploaded' style={{ width: '500px' }} />}
 <br /> */}
-<label className='label'>Content :</label>
-<input type='text' name="content" value={form.content} className='input-field' onChange={handleChange}/>
-<br />
+      <label className="label">Content :</label>
+      <input
+        type="text"
+        name="content"
+        value={form.content}
+        className="input-field"
+        onChange={handleChange}
+      />
+      <br />
 
-      <label className='label'>CTA :</label>
-      <input type='text' name="cta" value={form.cta} className='input-field' onChange={handleChange}/>
-<br/>
+      <label className="label">CTA :</label>
+      <input
+        type="text"
+        name="cta"
+        value={form.cta}
+        className="input-field"
+        onChange={handleChange}
+      />
+      <br />
+      <label className="label">Type :</label>
+      <input
+        type="text"
+        name="type"
+        value={form.type}
+        className="input-field"
+        onChange={handleChange}
+      />
+      <br />
+
       <button className="add-campaign-button" onClick={handleSubmit}>
-              Save Data
-            </button>
+        Save Data
+      </button>
     </div>
-
   );
 }

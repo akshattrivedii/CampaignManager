@@ -14,6 +14,9 @@ mongoose.connect('mongodb://localhost:27017/LG', {
   useUnifiedTopology: true,
 });
 
+const db = mongoose.connection;
+
+
 // Define campaign schema
 const campaignSchema = new mongoose.Schema({
   subject: String,
@@ -23,6 +26,7 @@ const campaignSchema = new mongoose.Schema({
   // }],
   content: String, 
   cta:  Number,
+  type: String,
 });
 
 
@@ -47,7 +51,7 @@ app.post('/api/campaigns', async (req, res) => {
 app.post('/api/campaigns/:name', async(req , res)=> {
   try{
     console.log(req.body)
-    const { subject, preheader, content, cta } = req.body;
+    const { subject, preheader, content, cta, type} = req.body;
     const Campaign = mongoose.model(req.params.name , campaignSchema);
     const campaign = new Campaign({
       subject: subject ,
@@ -55,6 +59,7 @@ app.post('/api/campaigns/:name', async(req , res)=> {
       // images: img, 
       content: content, 
       CTA: cta,
+      type: type, 
       });
     await campaign.save();
     res.status(201).send(campaign);
@@ -62,6 +67,27 @@ app.post('/api/campaigns/:name', async(req , res)=> {
   catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
+  }
+})
+
+app.get('/api/viewcampaign/:name/:type', async(req , res) => {
+  
+    const CampaignModel = mongoose.model(req.params.name, campaignSchema);
+    CampaignModel.find({ type: req.params.type })
+    .then((data) => {
+      res.json(data)
+    })
+  .catch((err) => res.json(err));
+})
+
+app.get('/api/campaignList', async(req, res) => {
+  try{
+    const collections = await db.listCollections();
+    console.log(collections);
+    res.json(collections)
+  }
+  catch (error) {
+    console.error(error);
   }
 })
 
